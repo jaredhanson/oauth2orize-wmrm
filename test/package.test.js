@@ -1,13 +1,13 @@
 /* global describe, it */
 
-var pkg = require('..');
 var expect = require('chai').expect;
+var wmrm = require('..');
 
 
-describe('oauth2orize wmrm', function() {
+describe('oauth2orize-wmrm', function() {
   
-  it('should export hello world', function() {
-    expect(pkg.hello).to.equal('world');
+  it('should export function', function() {
+    expect(wmrm).to.be.an('function');
   });
   
 });
