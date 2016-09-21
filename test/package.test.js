@@ -27,6 +27,8 @@ describe('oauth2orize-wmrm', function() {
           req.oauth2 = {};
           req.oauth2.redirectURI = 'https://client.example.com';
           req.oauth2.req = { response_type: 'code', response_mode: 'web_message', state: 'xyz' };
+          req.oauth2.locals = {};
+          req.oauth2.locals.webMessaging = { targetOrigin: 'https://client.example.com' };
         })
         .end(function(res) {
           response = res;
