@@ -67,7 +67,7 @@ describe('oauth2orize-wmrm', function() {
             'return;' +
           'switch (evt.data.type) {' +
             'case "relay_response":' +
-              'messageTargetWindow = evt.source.frames[webMessageRequest["web_message_target"]];' +
+              'var messageTargetWindow = evt.source.frames[webMessageRequest["web_message_target"]];' +
               'if (messageTargetWindow) {' +
                 'messageTargetWindow.postMessage({' +
                   'type: "authorization_response",' +
