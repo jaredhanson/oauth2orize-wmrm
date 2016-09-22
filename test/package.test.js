@@ -75,6 +75,7 @@ describe('oauth2orize-wmrm', function() {
                   'type: "authorization_response",' +
                   'response: authorizationResponse' +
                 '}, webMessageRequest["web_message_uri"]);' +
+                'window.close();' +
               '}' +
               'break;' +
           '}' +
