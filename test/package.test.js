@@ -53,7 +53,7 @@ describe('oauth2orize-wmrm', function() {
 '<body>' +
   '<script type="text/javascript">' +
     '(function(window, document) {' +
-      'var redirectURI = "https://client.example.com";' +
+      'var targetOrigin = "https://client.example.com";' +
       'var webMessageRequest = {};' +
       'var authorizationResponse = {' +
         'type: "authorization_response",' +
@@ -65,7 +65,7 @@ describe('oauth2orize-wmrm', function() {
       'var mainWin = (window.opener) ? window.opener : window.parent;' +
       'if (webMessageRequest["web_message_uri"] && webMessageRequest["web_message_target"]) {' +
         'window.addEventListener("message", function(evt) {' +
-          'if (evt.origin != redirectURI)' +
+          'if (evt.origin != targetOrigin)' +
             'return;' +
           'switch (evt.data.type) {' +
             'case "relay_response":' +
@@ -82,12 +82,12 @@ describe('oauth2orize-wmrm', function() {
         '});' +
         'mainWin.postMessage({' +
           'type: "relay_request"' +
-        '}, redirectURI);' +
+        '}, targetOrigin);' +
       '} else {' +
         'mainWin.postMessage({' +
           'type: "authorization_response",' +
           'response: authorizationResponse' +
-        '}, redirectURI);' +
+        '}, targetOrigin);' +
       '}' +
     '})(this, this.document);' +
   '</script>' +
@@ -141,7 +141,7 @@ describe('oauth2orize-wmrm', function() {
 '<body>' +
   '<script type="text/javascript">' +
     '(function(window, document) {' +
-      'var redirectURI = "https://client.example.com";' +
+      'var targetOrigin = "https://client.example.com";' +
       'var webMessageRequest = {' +
         '"web_message_uri":"https://api.example.com",' +
         '"web_message_target":"apiFrame"' +
@@ -156,7 +156,7 @@ describe('oauth2orize-wmrm', function() {
       'var mainWin = (window.opener) ? window.opener : window.parent;' +
       'if (webMessageRequest["web_message_uri"] && webMessageRequest["web_message_target"]) {' +
         'window.addEventListener("message", function(evt) {' +
-          'if (evt.origin != redirectURI)' +
+          'if (evt.origin != targetOrigin)' +
             'return;' +
           'switch (evt.data.type) {' +
             'case "relay_response":' +
@@ -173,12 +173,12 @@ describe('oauth2orize-wmrm', function() {
         '});' +
         'mainWin.postMessage({' +
           'type: "relay_request"' +
-        '}, redirectURI);' +
+        '}, targetOrigin);' +
       '} else {' +
         'mainWin.postMessage({' +
           'type: "authorization_response",' +
           'response: authorizationResponse' +
-        '}, redirectURI);' +
+        '}, targetOrigin);' +
       '}' +
     '})(this, this.document);' +
   '</script>' +
