@@ -70,10 +70,7 @@ describe('oauth2orize-wmrm', function() {
             'case "relay_response":' +
               'var messageTargetWindow = evt.source.frames[webMessageRequest["web_message_target"]];' +
               'if (messageTargetWindow) {' +
-                'messageTargetWindow.postMessage({' +
-                  'type: "authorization_response",' +
-                  'response: authorizationResponse' +
-                '}, webMessageRequest["web_message_uri"]);' +
+                'messageTargetWindow.postMessage(authorizationResponse, webMessageRequest["web_message_uri"]);' +
                 'window.close();' +
               '}' +
               'break;' +
@@ -83,10 +80,7 @@ describe('oauth2orize-wmrm', function() {
           'type: "relay_request"' +
         '}, targetOrigin);' +
       '} else {' +
-        'mainWin.postMessage({' +
-          'type: "authorization_response",' +
-          'response: authorizationResponse' +
-        '}, targetOrigin);' +
+        'mainWin.postMessage(authorizationResponse, targetOrigin);' +
       '}' +
     '})(this, this.document);' +
   '</script>' +
@@ -160,10 +154,7 @@ describe('oauth2orize-wmrm', function() {
             'case "relay_response":' +
               'var messageTargetWindow = evt.source.frames[webMessageRequest["web_message_target"]];' +
               'if (messageTargetWindow) {' +
-                'messageTargetWindow.postMessage({' +
-                  'type: "authorization_response",' +
-                  'response: authorizationResponse' +
-                '}, webMessageRequest["web_message_uri"]);' +
+                'messageTargetWindow.postMessage(authorizationResponse, webMessageRequest["web_message_uri"]);' +
                 'window.close();' +
               '}' +
               'break;' +
@@ -173,10 +164,7 @@ describe('oauth2orize-wmrm', function() {
           'type: "relay_request"' +
         '}, targetOrigin);' +
       '} else {' +
-        'mainWin.postMessage({' +
-          'type: "authorization_response",' +
-          'response: authorizationResponse' +
-        '}, targetOrigin);' +
+        'mainWin.postMessage(authorizationResponse, targetOrigin);' +
       '}' +
     '})(this, this.document);' +
   '</script>' +
