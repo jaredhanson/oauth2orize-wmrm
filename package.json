@@ -1,13 +1,14 @@
 {
   "name": "oauth2orize-wmrm",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Web Message response mode support for OAuth2orize.",
   "author": {
     "name": "Jared Hanson",
     "email": "jaredhanson@gmail.com",
     "url": "http://www.jaredhanson.net/"
   },
-  "repository": {    "type": "git",
+  "repository": {
+    "type": "git",
     "url": "git://github.com/jaredhanson/oauth2orize-wmrm.git"
   },
   "bugs": {
@@ -21,8 +22,7 @@
     }
   ],
   "main": "./lib",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "make-node": "^0.3.0",
     "mocha": "^2.0.0",
