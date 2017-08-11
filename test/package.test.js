@@ -25,7 +25,6 @@ describe('oauth2orize-wmrm', function() {
         })
         .req(function(req) {
           req.oauth2 = {};
-          //req.oauth2.redirectURI = 'https://client.example.com';
           req.oauth2.webOrigin = 'https://client.example.com';
           req.oauth2.req = { responseType: 'code', responseMode: 'web_message', state: 'xyz' };
         })
@@ -103,7 +102,6 @@ describe('oauth2orize-wmrm', function() {
         })
         .req(function(req) {
           req.oauth2 = {};
-          //req.oauth2.redirectURI = 'https://client.example.com';
           req.oauth2.webOrigin = 'https://client.example.com';
           req.oauth2.req = { responseType: 'code', responseMode: 'web_message',
             webMessageURI: 'https://api.example.com',
