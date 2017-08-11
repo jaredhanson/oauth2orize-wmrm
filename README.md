@@ -3,11 +3,42 @@
 [OAuth2orize](https://github.com/jaredhanson/oauth2orize) response mode plugin
 providing support for [Web Message Response Mode](https://tools.ietf.org/html/draft-sakimura-oauth-wmrm-00).
 
+This response mode uses [HTML5 Web Messaging](https://www.w3.org/TR/webmessaging/)
+instead of a redirect URI to return authorization responses from the
+authorization server.
+
 ## Install
 
     $ npm install oauth2orize-wmrm
 
 ## Usage
+
+#### Parse Request Extensions
+
+The web message response mode defines additional parameters needed in the
+authorization request.  Register support for these extensions with a `Server`
+instance in order to parse the parameters:
+
+```js
+server.grant(require('oauth2orize-wmrm').extensions());
+```
+
+#### Add Response Mode
+
+For each grant in which web message response mode is desired, add support by
+passing a `modes` option containing Web Message response mode.  For example,
+using the token grant:
+
+```js
+server.grant({ 
+  modes: {
+    web_message: require('oauth2orize-wmrm')
+  } }, 
+  oauth2orize.grant.token(function(client, user, ares, done) {
+    // TODO: issue token
+  })
+);
+```
 
 ## Considerations
 
