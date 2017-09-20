@@ -1,5 +1,12 @@
 # oauth2orize-wmrm
 
+[![Version](https://img.shields.io/npm/v/oauth2orize-wmrm.svg?label=version)](https://www.npmjs.com/package/oauth2orize-wmrm)
+[![Build](https://img.shields.io/travis/jaredhanson/oauth2orize-wmrm.svg)](https://travis-ci.org/jaredhanson/oauth2orize-wmrm)
+[![Quality](https://img.shields.io/codeclimate/github/jaredhanson/oauth2orize-wmrm.svg?label=quality)](https://codeclimate.com/github/jaredhanson/oauth2orize-wmrm)
+[![Coverage](https://img.shields.io/coveralls/jaredhanson/oauth2orize-wmrm.svg)](https://coveralls.io/r/jaredhanson/oauth2orize-wmrm)
+[![Dependencies](https://img.shields.io/david/jaredhanson/oauth2orize-wmrm.svg)](https://david-dm.org/jaredhanson/oauth2orize-wmrm)
+
+
 [OAuth2orize](https://github.com/jaredhanson/oauth2orize) response mode plugin
 providing support for [Web Message Response Mode](https://tools.ietf.org/html/draft-sakimura-oauth-wmrm-00).
 
