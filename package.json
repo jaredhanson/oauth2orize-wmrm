@@ -1,6 +1,6 @@
 {
   "name": "oauth2orize-wmrm",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Web Message response mode support for OAuth2orize.",
   "author": {
     "name": "Jared Hanson",

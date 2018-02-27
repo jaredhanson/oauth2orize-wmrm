@@ -170,5 +170,78 @@ describe('oauth2orize-wmrm', function() {
 '</html>');
     });
   });
-  
+
+  describe('handling dangerous characters (<>&)', function() {
+    var response, err;
+
+    before(function(done) {
+      chai.connect.use(function(req, res) {
+          var params = {
+            error: 'access_denied',
+            error_description: 'error description <>&',
+            state: req.oauth2.req.state
+          };
+
+          wmrm(req.oauth2, res, params);
+        })
+        .req(function(req) {
+          req.oauth2 = {};
+          req.oauth2.webOrigin = 'https://client.example.com';
+          req.oauth2.req = { responseType: 'code', responseMode: 'web_message', state: '<>&123456789' };
+        })
+        .end(function(res) {
+          response = res;
+          done();
+        })
+        .dispatch();
+    });
+
+    it('should escape serialized JSON objects', function() {
+      expect(response.body).to.equal(
+'<!DOCTYPE html>' +
+'<html>' +
+'<head>' +
+  '<title>Authorization Response</title>' +
+'</head>' +
+'<body>' +
+  '<script type="text/javascript">' +
+    '(function(window, document) {' +
+      'var targetOrigin = "https://client.example.com";' +
+      'var webMessageRequest = {};' +
+      'var authorizationResponse = {' +
+        'type: "authorization_response",' +
+        'response: {' +
+          '"error":"access_denied",' +
+          '"error_description":"error description \\u003C\\u003E\\u0026",' +
+          '"state":"\\u003C\\u003E\\u0026123456789"' +
+        '}' +
+      '};' +
+      'var mainWin = (window.opener) ? window.opener : window.parent;' +
+      'if (webMessageRequest["web_message_uri"] && webMessageRequest["web_message_target"]) {' +
+        'window.addEventListener("message", function(evt) {' +
+          'if (evt.origin != targetOrigin)' +
+            'return;' +
+          'switch (evt.data.type) {' +
+            'case "relay_response":' +
+              'var messageTargetWindow = evt.source.frames[webMessageRequest["web_message_target"]];' +
+              'if (messageTargetWindow) {' +
+                'messageTargetWindow.postMessage(authorizationResponse, webMessageRequest["web_message_uri"]);' +
+                'window.close();' +
+              '}' +
+              'break;' +
+          '}' +
+        '});' +
+        'mainWin.postMessage({' +
+          'type: "relay_request"' +
+        '}, targetOrigin);' +
+      '} else {' +
+        'mainWin.postMessage(authorizationResponse, targetOrigin);' +
+      '}' +
+    '})(this, this.document);' +
+  '</script>' +
+'</body>' +
+'</html>');
+    });
+  });
+
 });
